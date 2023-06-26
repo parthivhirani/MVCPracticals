@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Test-2";
+    ViewBag.Message = "Hello World";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+
+    <div>
+        <button class="btn btn-primary" onclick="printText()">Print Text</button>
+        <button class="btn btn-dark" onclick="bold()">Bold</button>
+        <button class="btn btn-dark" onclick="italic()">Italic</button>
+        <button class="btn btn-dark" onclick="underline()">Underline</button>
+        <button class="btn btn-danger" onclick="reset()">Reset</button>
+    </div>
+
+    <h1 id="textMsg"></h1>
+
+    <script>
+        function printText() {
+            document.getElementById("textMsg").innerHTML = "@ViewBag.Message";
+            document.getElementById("textMsg").removeAttribute("style");
+        }
+
+        function bold() {
+            document.getElementById("textMsg").removeAttribute("style");
+            document.getElementById("textMsg").style.fontWeight = "bold";
+        }
+
+        function italic() {
+            document.getElementById("textMsg").removeAttribute("style");
+            document.getElementById("textMsg").style.fontStyle = "italic";
+        }
+
+        function underline() {
+            document.getElementById("textMsg").removeAttribute("style");
+            document.getElementById("textMsg").style.textDecoration = "underline";
+        }
+
+        function reset() {
+            document.getElementById("textMsg").removeAttribute("style");
+        }
+    </script>
+</main>
