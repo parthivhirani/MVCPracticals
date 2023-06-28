@@ -1,0 +1,12 @@
+﻿<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<h2>JavaScriptResultDemo</h2>
+<input type="button" id="btn" class="btn btn-danger" value="Get Alert"/>
+
+<script>
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            $.getScript("/ActionResultDemo/JavaScriptResultDemo1");
+        });
+    });
+</script>
