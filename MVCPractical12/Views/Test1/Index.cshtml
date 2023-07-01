@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MVCPractical12.Models.Employee>
+<style>
+    .links {
+        background-color: rgb(2, 128, 250);
+        border-radius: 5px;
+        width: fit-content;
+        padding: 5px;
+    }
+</style>
+<div class="row gx-5">
+    <div class="col text-md-center">
+        <div class="p-3 border bg-primary">@Html.ActionLink("Insert Records in Employee table", "Query1", null, new { @class = "text-decoration-none text-white" })</div>
+    </div>
+    <div class="col text-md-center">
+        <div class="p-3 border bg-primary">@Html.ActionLink("Update FirstName of first record", "Query2", null, new { @class = "text-decoration-none text-white" })</div>
+    </div>
+</div>
+<br />
+
+<div class="row gx-5">
+    <div class="col text-md-center">
+        <div class="p-3 border bg-primary">@Html.ActionLink("Update MiddleName of all records to I", "Query3", null, new { @class = "text-decoration-none text-white" })</div>
+    </div>
+    <div class="col text-md-center">
+        <div class="p-3 border bg-primary">@Html.ActionLink("Delete records which Id<2", "Query4", null, new { @class = "text-decoration-none text-white" })</div>
+    </div>
+</div>
+<br />
+
+
+<div class="row gx-5">
+    <div class="col text-md-center">
+        <div class="p-3 border bg-primary">@Html.ActionLink("Delete all data from table", "Query5", null, new { @class = "text-decoration-none text-white" })</div>
+    </div>
+</div>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+        }
+
+    </table>

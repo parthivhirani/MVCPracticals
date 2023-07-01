@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MVCPractical12.Models.Query2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number_of_Employees)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Number_of_Employees)
+        </td>
+    </tr>
+}
+
+</table>
