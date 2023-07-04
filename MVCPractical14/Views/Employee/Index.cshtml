@@ -1,0 +1,88 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVCPractical14.Models.EmployeePractical14>
+<p>
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+    {
+        @Html.TextBox("search", null, new { placeholder = "Search employee...", oninput = "filterEmployees(this.value)" })
+    }
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="tblEmployees">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Date of Birth
+        </th>
+        <th>
+            Age
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<h5 class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+    PagedListRenderOptions.PageNumbersOnly)
+</h5>
+
+
+<script>
+    function filterEmployees(search) {
+        $.ajax({
+            type: "POST",
+            url: "/Employee/Index",
+            data: "{search:'" + search + "'}",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (searchedEmployees) {
+                var table = $("#tblEmployees");
+                table.find("tr:not(:first)").remove();
+                $.each(searchedEmployees, function (i, employee) {
+
+
+                    var timestamp = parseInt(employee.DOB.match(/\d+/)[0]);
+                    var date = new Date(timestamp);
+                    var year = date.getFullYear();
+                    var month = String(date.getMonth() + 1).padStart(2, '0');
+                    var day = String(date.getDate()).padStart(2, '0');
+                    var formattedDate = year + '-' + month + '-' + day;
+
+                    var table = $("#tblEmployees");
+                    var row = table[0].insertRow(-1);
+                    $(row).append("<td />");
+                    $(row).find("td").eq(0).html(employee.Name);
+                    $(row).append("<td />");
+                    $(row).find("td").eq(1).html(formattedDate);
+                    $(row).append("<td />");
+                    $(row).find("td").eq(2).html(employee.Age);
+                    $(row).append("<td />");
+                    $(row).find("td").eq(3).html( "<a href='Edit/' + { employee.Id } > Edit </a > | <a href='Details/' + { employee.Id } > Details </a > | <a href = 'Delete/' + { employee.Id } > Delete</a >");
+                });
+            }
+        })
+    }
+</script>
