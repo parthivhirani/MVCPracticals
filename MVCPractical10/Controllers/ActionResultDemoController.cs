@@ -25,7 +25,7 @@ namespace MVCPractical10.Controllers
 
         public EmptyResult EmptyResultDemo()
         {
-            return null;
+            return new EmptyResult();
         }
 
         public ActionResult JavaScriptResultDemo()
