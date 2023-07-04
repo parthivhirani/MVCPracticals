@@ -11,8 +11,8 @@ namespace MVCPractical11_2.Controllers
     {
         static List<Employee> empList = new List<Employee>()
         {
-            new Employee(){Id=1, Name="Parthiv", DOB=("29/03/2002").ToString(), Address="Rajkot"},
-            new Employee(){Id=2, Name="Meet", DOB=("06/05/2002").ToString(), Address="Ahmedabad"}
+            new Employee(){Id=1, Name="Parthiv", DOB=("2002-03-29").ToString(), Address="Rajkot"},
+            new Employee(){Id=2, Name="Meet", DOB=("2002-07-21").ToString(), Address="Ahmedabad"}
         };
         
         public ActionResult Index()
