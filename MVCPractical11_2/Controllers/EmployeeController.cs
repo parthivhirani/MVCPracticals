@@ -12,7 +12,7 @@ namespace MVCPractical11_2.Controllers
         static List<Employee> empList = new List<Employee>()
         {
             new Employee(){Id=1, Name="Parthiv", DOB=("2002-03-29").ToString(), Address="Rajkot"},
-            new Employee(){Id=2, Name="Meet", DOB=("05-09-2001").ToString(), Address="Ahmedabad"}
+            new Employee(){Id=2, Name="Meet", DOB=("2001-09-05").ToString(), Address="Ahmedabad"}
         };
 
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace MVCPractical11_2.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(empList[id - 1]);
+            return View(empList.Where(e=>e.Id==id).FirstOrDefault());
         }
 
         public ActionResult Create()
@@ -37,30 +37,35 @@ namespace MVCPractical11_2.Controllers
             {
                 emp.Id = empList.Count() + 1;
                 empList.Add(emp);
+                return RedirectToAction("Index");
             }
-            return View(emp);
+            return View();
         }
 
         public ActionResult Edit(int id)
         {
-            return View(empList[id - 1]);
+            return View(empList.Where(e => e.Id == id).FirstOrDefault());
         }
 
         [HttpPost]
         public ActionResult Edit(Employee emp)
         {
-            var edited = empList[emp.Id - 1];
+            if(ModelState.IsValid)
+            {
+                var edited = empList.Where(e => e.Id == emp.Id).FirstOrDefault();
 
-            emp.Id = edited.Id;
-            empList.Add(emp);
+                emp.Id = edited.Id;
+                empList.Add(emp);
 
-            empList.Remove(edited);
-            return RedirectToAction("Index");
+                empList.Remove(edited);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public ActionResult Delete(int id)
         {
-            empList.Remove(empList[id - 1]);
+            empList.Remove(empList.Where(e=>e.Id==id).FirstOrDefault());
             return RedirectToAction("Index");
         }
     }

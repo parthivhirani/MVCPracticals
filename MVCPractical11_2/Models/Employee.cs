@@ -15,9 +15,9 @@ namespace MVCPractical11_2.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage ="This field can't be empty.")]
+        [DataType(DataType.Date)]
         [Display(Name="Date of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
         public string DOB { get; set; }
 
         [Required(ErrorMessage ="This field can't be empty.")]
