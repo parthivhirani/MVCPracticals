@@ -133,6 +133,7 @@
     <Compile Include="Models\Employee3.cs" />
     <Compile Include="Models\Query2.cs" />
     <Compile Include="Models\Query3.cs" />
+    <Compile Include="Models\Query4.cs" />
     <Compile Include="Models\Query7.cs" />
     <Compile Include="Models\Query8.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,11 +197,14 @@
     <Content Include="Views\Test3\Query6.cshtml" />
     <Content Include="Views\Test3\Query2.cshtml" />
     <Content Include="Views\Test3\Query3.cshtml" />
-    <Content Include="Views\Test3\Query4.cshtml" />
     <Content Include="Views\Test3\Query7.cshtml" />
     <Content Include="Views\Test3\Query8.cshtml" />
     <Content Include="Views\Test3\Query9.cshtml" />
     <Content Include="Views\Test3\Query11.cshtml" />
+    <Content Include="Views\Test1\Query1.cshtml" />
+    <Content Include="Views\Test2\Query1.cshtml" />
+    <Content Include="Views\Test3\Query1.cshtml" />
+    <Content Include="Views\Test3\Query4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

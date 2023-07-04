@@ -19,6 +19,7 @@ namespace MVCPractical12.Models
         public string LastName { get; set; }
         [Required]
         [Display(Name = "Date of Birth")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DOB { get; set; }
         [Required]
         public string MobileNumber { get; set; }

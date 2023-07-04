@@ -46,13 +46,22 @@ namespace MVCPractical12.Controllers
 
         public ActionResult Query1()
         {
-            var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
-            var cmd = new SqlCommand(@"INSERT INTO Employee2 VALUES ('Parthiv', 'VipulBhai', 'Hirani', '2001-10-27', '9574760899', 'Rajkot', 54166.66),
-                                       ('Vaidehi', 'VipulBhai', 'Hirani', '1995-08-20', '7665677577', 'Ahmedabad', 120000.00)", con);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
-            return RedirectToAction("Index");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Query1(Employee2 emp)
+        {
+            if (ModelState.IsValid)
+            {
+                var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
+                var cmd = new SqlCommand($"INSERT INTO Employee2 VALUES ('{emp.FirstName}', '{emp.MiddleName}', '{emp.LastName}', '{DateTime.Parse(emp.DOB.ToString())}', '{emp.MobileNumber}', '{emp.Address}', {emp.Salary})", con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public ActionResult Query2()

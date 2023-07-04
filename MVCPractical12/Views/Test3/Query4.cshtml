@@ -1,5 +1,13 @@
-﻿@model IEnumerable<MVCPractical12.Models.Employee3>
+﻿@model IEnumerable<MVCPractical12.Models.Query4>
 
+@{
+    ViewBag.Title = "Query4";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -12,7 +20,7 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DesignationDetails.DesignationName)
+            @Html.DisplayNameFor(model => model.Designation)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DOB)
@@ -40,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DesignationDetails.DesignationName)
+            @Html.DisplayFor(modelItem => item.Designation)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DOB)

@@ -17,22 +17,28 @@ namespace MVCPractical12.Controllers
             return View();
         }
 
-
         public ActionResult Query1()
         {
-            var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
-            var cmd1 = new SqlCommand(@"INSERT INTO Employee3 VALUES ('Parthiv', 'VipulBhai', 'Hirani', '2001-10-27', '9574760899', 'Rajkot', 54166.66, 1),
-                                       ('Vaidehi', 'VipulBhai', 'Hirani', '1995-08-20', '7665677577', 'Ahmedabad', 120000.00, 2)", con);
-
-            var cmd2 = new SqlCommand(@"INSERT INTO Designation VALUES ('Trainee'),
-                                       ('Senior Software Engineer')", con);
-            con.Open();
-            
-            cmd2.ExecuteNonQuery();
-            cmd1.ExecuteNonQuery();
-            con.Close();
-            return RedirectToAction("Index");
+            return View();
         }
+
+        [HttpPost]
+        public ActionResult Query1(Employee3 emp)
+        {
+            if(ModelState.IsValid)
+            {
+                var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
+                var cmd1 = new SqlCommand($"INSERT INTO Employee3 VALUES ('{emp.FirstName}', '{emp.MiddleName}', '{emp.LastName}', '{DateTime.Parse(emp.DOB.ToString())}', '{emp.MobileNumber}', '{emp.Address}', {emp.Salary}, {emp.DesignationId})", con);
+
+                con.Open();
+
+                cmd1.ExecuteNonQuery();
+                con.Close();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+            
 
         public ActionResult Query2()
         {
@@ -74,18 +80,18 @@ namespace MVCPractical12.Controllers
 
         public ActionResult Query4()
         {
-            List<Employee3> query4 = new List<Employee3>();
+            List<Query4> query4 = new List<Query4>();
             var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
             var cmd = new SqlCommand("SELECT * FROM getEmpDesignation;", con);
             con.Open();
             var resultSet = cmd.ExecuteReader();
             while (resultSet.Read())
             {
-                var query = new Employee3();
+                var query = new Query4();
                 query.FirstName = (string)resultSet["FirstName"];
                 query.MiddleName = (string)resultSet["MiddleName"];
                 query.LastName = (string)resultSet["LastName"];
-                query.DesignationDetails = (Designation)resultSet["Designation"];
+                query.Designation = (string)resultSet["Designation"];
                 query.DOB = (DateTime)resultSet["DOB"];
                 query.MobileNumber = (string)resultSet["MobileNumber"];
                 query.Address = (string)resultSet["Address"];
@@ -121,7 +127,7 @@ namespace MVCPractical12.Controllers
             SqlParameter param5 = new SqlParameter("mobileNumber", "6787676530");
             SqlParameter param6 = new SqlParameter("address", "Gondal");
             SqlParameter param7 = new SqlParameter("salary", 45000.00);
-            SqlParameter param8 = new SqlParameter("designationId", 4);
+            SqlParameter param8 = new SqlParameter("designationId", 3);
             cmd.Parameters.Add(param1);
             cmd.Parameters.Add(param2);
             cmd.Parameters.Add(param3);

@@ -7,9 +7,8 @@ using System.Xml.Linq;
 
 namespace MVCPractical12.Models
 {
-    public class Employee3
+    public class Query4
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
@@ -17,6 +16,7 @@ namespace MVCPractical12.Models
         public string MiddleName { get; set; }
         [Required]
         public string LastName { get; set; }
+        public string Designation { get; set; }
         [Required]
         [Display(Name = "Date of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -27,8 +27,6 @@ namespace MVCPractical12.Models
         public string Address { get; set; }
         [Required]
         public decimal Salary { get; set; }
-        public int DesignationId { get; set; }
 
-        public Designation DesignationDetails { get; set; }
     }
 }
