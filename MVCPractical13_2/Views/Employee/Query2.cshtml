@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MVCPractical13_2.Models.Query2>
+
+@{
+    ViewBag.Title = "Query2";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DesignationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountNumber)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DesignationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountNumber)
+        </td>
+    </tr>
+}
+
+</table>
