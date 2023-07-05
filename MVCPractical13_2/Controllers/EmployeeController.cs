@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 
@@ -85,7 +86,9 @@ namespace MVCPractical13_2.Controllers
         public ActionResult Query1()
         {
             List<Query1> query1s = new List<Query1>();
-            var query1Result = context.Employees.Include(d => d.Designation).ToList();
+            var query1Result = context.Employees
+                .Include(d => d.Designation)
+                .ToList();
             foreach (var employee in query1Result)
             {
                 Query1 q1 = new Query1();
@@ -106,15 +109,31 @@ namespace MVCPractical13_2.Controllers
         public ActionResult Query2()
         {
             List<Query2> query2s = new List<Query2>();
-            var countEmployees = context.Employees.Include(e=>e.Designation.Designation).GroupBy(e=>e.DesignationId).ToList();
-            foreach (IGrouping<string, Query2> employee in query2s)
-            {
-                Query2 q2 = new Query2();
-                q2.DesignationName = employee.Key;
-                q2.CountNumber = employee.Count();
-                query2s.Add(q2);
-            }
-            return View(query2s);
+            var countEmployees = context.Employees
+                .Join(context.Designations,
+                x=>x.DesignationId,
+                y=>y.Id,
+                (emp, des)=> new Query1
+                {
+                    Id = emp.Id,
+                    FirstName = emp.FirstName,
+                    LastName = emp.LastName,
+                    MiddleName = emp.MiddleName,
+                    Designation = des.Designation,
+                    DOB = emp.DOB,
+                    MobileNumber = emp.MobileNumber,
+                    Address = emp.Address,
+                    Salary = emp.Salary,
+
+                })
+                .GroupBy(e=>e.Designation)
+                .Select(x=>new Query2
+                {
+                    DesignationName = x.Key,
+                    CountNumber = x.Count()
+                });
+            
+            return View(countEmployees);
         }
     }
 }
