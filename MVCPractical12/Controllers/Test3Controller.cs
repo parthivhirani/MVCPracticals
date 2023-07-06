@@ -28,7 +28,7 @@ namespace MVCPractical12.Controllers
             if(ModelState.IsValid)
             {
                 var con = new SqlConnection("data source=.; database=MVCPracticals; user id=parthiv; password=Rmha@12345678;");
-                var cmd1 = new SqlCommand($"INSERT INTO Employee3 VALUES ('{emp.FirstName}', '{emp.MiddleName}', '{emp.LastName}', '{DateTime.Parse(emp.DOB.ToString())}', '{emp.MobileNumber}', '{emp.Address}', {emp.Salary}, {emp.DesignationId})", con);
+                var cmd1 = new SqlCommand($"INSERT INTO Employee3 VALUES ('{emp.FirstName}', '{emp.MiddleName}', '{emp.LastName}', '{emp.DOB.Year}-{emp.DOB.Month}-{emp.DOB.Day}', '{emp.MobileNumber}', '{emp.Address}', {emp.Salary}, {emp.DesignationId})", con);
 
                 con.Open();
 
