@@ -4,7 +4,7 @@
 <p>
     @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
     {
-        @Html.TextBox("search", null, new { placeholder = "Search employee...", oninput = "filterEmployees(this.value)" })
+        @Html.TextBox("search", null, new { placeholder = "Search employee...", oninput = "filterEmployees(this.value)", @class="form-control" })
     }
 </p>
 <p>

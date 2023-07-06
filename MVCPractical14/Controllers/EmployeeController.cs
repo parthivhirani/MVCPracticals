@@ -23,7 +23,7 @@ namespace MVCPractical14.Controllers
         [HttpGet]
         public ActionResult Index(int page = 1)
         {
-            int recordsPerPage = 2;
+            int recordsPerPage = 10;
             using (var context = new MVCPractical14Entities())
             {
                 var pageResult = context.EmployeePractical14.ToList().ToPagedList(page, recordsPerPage);
